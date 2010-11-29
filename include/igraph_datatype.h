@@ -37,6 +37,8 @@
 #include "igraph_types.h"
 #include "igraph_vector.h"
 
+#include <inttypes.h>
+
 __BEGIN_DECLS
 
 /**
@@ -85,6 +87,9 @@ typedef struct igraph_s {
   igraph_vector_t os;
   igraph_vector_t is;
   void *attr;
+  uint32_t types;		/* 1 - loops?     */
+                                /* 2 - multiple?  */
+                                /* 4 - bipartite? */
 } igraph_t;
 
 __END_DECLS
