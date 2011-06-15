@@ -68,6 +68,14 @@
 #define ONE 1
 #define MULTIPLICITY 1
 
+#elif defined(BASE_UINT)
+#define BASE unsigned
+#define SHORT uint
+#define OUT_FORMAT "%u"
+#define ZERO 0
+#define ONE 1
+#define MULTIPLICITY 1
+
 #elif defined(BASE_LIMB)
 #define BASE limb_t
 #define SHORT limb

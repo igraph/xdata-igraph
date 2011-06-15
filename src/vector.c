@@ -56,6 +56,12 @@
 #include "igraph_pmt_off.h"
 #undef BASE_INT
 
+#define BASE_UINT
+#include "igraph_pmt.h"
+#include "vector.pmt"
+#include "igraph_pmt_off.h"
+#undef BASE_UINT
+
 #define BASE_COMPLEX
 #include "igraph_pmt.h"
 #include "vector.pmt"

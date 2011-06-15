@@ -232,8 +232,8 @@ libigraph_la_SOURCES       = $(HEADERS_PRIVATE) \
 			     cohesive_blocks.c statusbar.c \
 			     lapack.c complex.c eigen.c feedback_arc_set.c \
 			     sugiyama.c glpk_support.c \
-				 igraph_hrg_types.cc igraph_hrg.cc \
-			     distances.c
+			     igraph_hrg_types.cc igraph_hrg.cc \
+			     distances.c igraph_hashtable.c
 
 libigraph_la_CFLAGS        = -I$(top_srcdir)/include -I$(top_builddir)/include $(WARNING_CFLAGS)
 libigraph_la_CXXFLAGS	   = -I$(top_srcdir)/include -I$(top_builddir)/include $(WARNING_CFLAGS)

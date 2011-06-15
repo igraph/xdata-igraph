@@ -171,3 +171,8 @@ AT_SETUP([Complex numbers (igraph_complex_t): ])
 AT_KEYWORDS([complex])
 AT_COMPILE_CHECK([simple/igraph_complex.c])
 AT_CLEANUP
+
+AT_SETUP([Hash table (igraph_hashtable_t): ])
+AT_KEYWORDS([hashing hash table])
+AT_COMPILE_CHECK([simple/igraph_hashtable.c])
+AT_CLEANUP
