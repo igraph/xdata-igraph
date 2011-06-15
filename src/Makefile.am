@@ -201,7 +201,7 @@ libigraph_la_SOURCES       = $(HEADERS_PRIVATE) \
 			     vector.c vector_ptr.c memory.c adjlist.c \
 			     visitors.c igraph_grid.c atlas.c topology.c \
 			     motifs.c progress.c operators.c \
-			     igraph_psumtree.c array.c igraph_hashtable.c \
+			     igraph_psumtree.c array.c \
 			     foreign-graphml.c flow.c igraph_buckets.c \
 			     NetDataTypes.cpp NetRoutines.cpp clustertool.cpp \
 			     pottsmodel_2.cpp spectral_properties.c cores.c \
