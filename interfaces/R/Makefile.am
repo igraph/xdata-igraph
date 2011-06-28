@@ -5,6 +5,9 @@ RFILES = $(wildcard igraph/R/*.R) $(wildcard igraph/man/*.Rd) \
 	igraph/src/config.h igraph/src/config.h.in igraph/src/Makevars.in \
 	igraph/src/Makevars.win igraph/DESCRIPTION \
 	igraph/NAMESPACE igraph/R/auto.R igraph/src/rinterface.c \
+	igraph/src/Rattributes.c igraph/src/Rconversion.c \
+	igraph/src/Rhandlers.c igraph/src/Rhash.c \
+	igraph/src/Rutility.c \
 	igraph/configure igraph/src/rinterface.h arpack/stamp
 
 igraph/src/config.h: src/config.h
@@ -50,6 +53,11 @@ igraph/NAMESPACE: ../functions.def NAMESPACE.in ../../tools/stimulus.py
             -i NAMESPACE.in \
             -o igraph/NAMESPACE \
             -l RNamespace
+
+# Other R interface files
+
+igraph/src/%.c: src/%.c
+	cp src/$(@F) $@
 
 # Files from the original source
 

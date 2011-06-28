@@ -70,6 +70,7 @@ set.vertex.attribute <- function(graph, name, index=V(graph), value) {
   if (!is.igraph(graph)) {
     stop("Not a graph object")
   }
+  was.named <- is.named(graph)
   index <- as.igraph.vs(graph, index)
   name <- as.character(name)
   vc <- vcount(graph)
@@ -79,8 +80,23 @@ set.vertex.attribute <- function(graph, name, index=V(graph), value) {
 ##   value <- rep(value, length.out=length(index))
   oclass <- class(graph)
   graph <- unclass(graph)
+  if (name=="name") { oldval <- graph[[9]][[3]][[name]][index] }
   graph[[9]][[3]][[name]][index] <- value
   length(graph[[9]][[3]][[name]]) <- vc
+
+  ## Update name hash if changed
+  if (name=="name") {
+    if (was.named) {
+      graph[[9]][[5]] <- .Call("R_igraph_hash_update", graph[[9]][[5]],
+                               seq_len(vc)[index], oldval,
+                               graph[[9]][[3]][["name"]][index],
+                               PACKAGE="igraph")
+    } else {
+      graph[[9]][[5]] <- .Call("R_igraph_hash_create2", graph[[9]][[3]]$name,
+                               PACKAGE="igraph")
+    }
+  }
+  
   class(graph) <- oclass
   graph
 }

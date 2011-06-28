@@ -359,8 +359,10 @@ print.igraph.es <- function(x, ...) {
 
 as.igraph.vs <- function(graph, v) {
   if (is.character(v) && "name" %in% list.vertex.attributes(graph)) {
+    ## v <- .Call("R_igraph_hash_match", graph, v,
+    ##            PACKAGE="igraph")
     v <- as.numeric(match(v, V(graph)$name))
-    if (any(is.na(v))) {
+    if (any(is.na(v) | v <= 0)) {
       stop("Invalid vertex names")
     }
     v

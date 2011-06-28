@@ -86,6 +86,12 @@ add.vertices <- function(graph, nv, ..., attr=list()) {
   graph <- unclass(graph)
   for (i in seq(attrs)) {
     graph[[9]][[3]][[nam[i]]][idx] <- attrs[[nam[i]]]
+    if (nam[i] == "name") {
+      graph[[9]][[5]] <- .Call("R_igraph_hash_add",
+                               graph[[9]][[5]], graph[[9]][[3]]$name,
+                               as.integer(vertices.orig),
+                               PACKAGE="igraph")
+    }
   }
   class(graph) <- oclass
                   
