@@ -199,8 +199,18 @@ libhpp_la_SOURCES = $(HPP)
 libhpp_la_CXXFLAGS = -I$(top_srcdir)/src/hpp/include
 HPP_LIB = libhpp.la
 
+BLOCK = blockmodel/src/blockmodel.cpp   blockmodel/src/optimization.cpp \
+				blockmodel/src/convergence.cpp  blockmodel/src/prediction.cpp		\
+				blockmodel/src/io.cpp           blockmodel/src/statistics.cpp		\
+				blockmodel/src/math.cpp					blockmodel/src/mt.cc
+
+libblockmodel_la_SOURCES = $(BLOCK)
+libblockmodel_la_CXXFLAGS = -I$(top_srcdir)/src/hpp/include \
+														-I$(top_srcdir)/src/blockmodel/include
+BLOCKMODEL_LIB = libblockmodel.la
+
 noinst_LTLIBRARIES = $(F2C_LIB) $(BLAS_LIB) $(LAPACK_LIB) $(ARPACK_LIB) \
-					 $(GLPK_LIB) $(PLFIT_LIB) $(HPP_LIB)
+					 $(GLPK_LIB) $(PLFIT_LIB) $(HPP_LIB) $(BLOCKMODEL_LIB)
 
 HEADERS_PRIVATE = atlas-edges.h \
 		bliss_bignum.hh		bliss_defs.hh \
@@ -333,7 +343,8 @@ libigraph_la_CFLAGS        = -I$(top_srcdir)/include -I$(top_builddir)/include $
 libigraph_la_CXXFLAGS	   = -I$(top_srcdir)/include -I$(top_builddir)/include $(WARNING_CFLAGS)
 libigraph_la_LDFLAGS       = -no-undefined
 libigraph_la_LIBADD        = -lm $(XML2_LIBS) $(F2C_LIB) $(BLAS_LIB) \
-				 $(LAPACK_LIB) $(ARPACK_LIB) $(GLPK_LIB) $(PLFIT_LIB) $(HPP_LIB)
+				 $(LAPACK_LIB) $(ARPACK_LIB) $(GLPK_LIB) $(PLFIT_LIB) $(HPP_LIB) \
+				 $(BLOCKMODEL_LIB)
 
 if INTERNAL_GLPK
   libigraph_la_CFLAGS   += -I$(top_srcdir)/optional/glpk
