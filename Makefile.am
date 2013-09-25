@@ -35,7 +35,7 @@ MAINTAINERCLEANFILES = Makefile.in
 
 ## to make sure make doc will always call doxygen rule
 ## and deb will generate Debian packages
-.PHONY: framework msvc
+.PHONY: framework msvc parsersources
 
 framework: all
 	rm -rf $(top_builddir)/igraph.framework
@@ -56,7 +56,10 @@ test: all
 	 	fi; \
 	done
 
-msvc: all
+parsersources:
+	cd src; make parsersources
+
+msvc: parsersources
 	rm -rf $(top_builddir)/igraph-$(VERSION)-msvc
 	mkdir $(top_builddir)/igraph-$(VERSION)-msvc
 	cp -r $(top_srcdir)/src $(top_builddir)/igraph-$(VERSION)-msvc/
